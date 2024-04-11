@@ -1,0 +1,18 @@
+// userRepository.js
+
+// Import model User jika diperlukan
+const User = require('../models/User');
+
+// Function untuk mengecek apakah email sudah terdaftar
+async function isEmailRegistered(email) {
+    try {
+        const user = await User.findOne({ email });
+        return !!user; // Mengembalikan true jika email sudah terdaftar, false jika tidak
+    } catch (error) {
+        throw error; // Melemparkan error jika terjadi kesalahan saat mencari user
+    }
+}
+
+module.exports = {
+    isEmailRegistered,
+};
